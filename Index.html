@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crowdfunding por y para la independencia de Natalia</title>
+  <style>
+    :root{
+      --green:#02ce78;
+      --dark:#1f1f1f;
+      --muted:#6b6b6b;
+      --border:#e8e8e8;
+      --bg:#f6f7f8;
+      --paypal:#0070ba;
+      --paypal-dark:#003087;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color:var(--dark);
+      background:var(--bg);
+    }
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid var(--border);
+      padding:16px 24px;
+      font-weight:700;
+      text-align:center;
+      letter-spacing:.2px;
+    }
+
+    .wrap{
+      max-width:1160px;
+      margin:32px auto;
+      padding:0 20px;
+      display:grid;
+      grid-template-columns: 1.6fr .9fr;
+      gap:32px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:18px;
+      overflow:hidden;
+    }
+
+    .hero{
+      padding:28px 28px 10px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      background:#f0fff8;
+      color:#067647;
+      border:1px solid #c6f6dd;
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:13px;
+      font-weight:700;
+      margin-bottom:16px;
+    }
+
+    h1{
+      margin:0 0 14px;
+      font-size:42px;
+      line-height:1.08;
+      letter-spacing:-0.02em;
+    }
+
+    .subtitle{
+      margin:0;
+      font-size:18px;
+      line-height:1.6;
+      color:#4f4f4f;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      padding:24px 28px 28px;
+    }
+
+    .gallery figure{
+      margin:0;
+      background:#fafafa;
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+    }
+
+    .gallery img{
+      display:block;
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      background:#eee;
+    }
+
+    .gallery figcaption{
+      padding:12px 14px;
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .story{
+      padding:0 28px 30px;
+    }
+
+    .story h2{
+      margin:4px 0 14px;
+      font-size:28px;
+    }
+
+    .story p{
+      margin:0 0 16px;
+      font-size:17px;
+      line-height:1.75;
+      color:#333;
+    }
+
+    .side{
+      position:sticky;
+      top:20px;
+      align-self:start;
+    }
+
+    .fund-box{
+      padding:26px;
+    }
+
+    .amount{
+      font-size:38px;
+      font-weight:800;
+      margin-bottom:4px;
+    }
+
+    .goal{
+      font-size:18px;
+      color:#3f3f3f;
+      margin-bottom:18px;
+    }
+
+    .progress{
+      width:100%;
+      height:14px;
+      background:#e9ecef;
+      border-radius:999px;
+      overflow:hidden;
+      margin-bottom:14px;
+    }
+
+    .progress-bar{
+      height:100%;
+      width:2.39%;
+      background:var(--green);
+      border-radius:999px;
+    }
+
+    .meta{
+      font-size:15px;
+      color:var(--muted);
+      margin-bottom:22px;
+      line-height:1.6;
+    }
+
+    .paypal-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      text-decoration:none;
+      background:linear-gradient(180deg,var(--paypal),var(--paypal-dark));
+      color:#fff;
+      font-weight:800;
+      font-size:17px;
+      border:none;
+      border-radius:14px;
+      padding:16px 18px;
+      box-shadow:0 8px 20px rgba(0,112,186,.18);
+      transition:transform .15s ease, box-shadow .15s ease;
+    }
+
+    .paypal-btn:hover{
+      transform:translateY(-1px);
+      box-shadow:0 10px 24px rgba(0,112,186,.24);
+    }
+
+    .paypal-logo{
+      width:22px;
+      height:22px;
+      flex:0 0 22px;
+    }
+
+    .small-note{
+      margin-top:14px;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .disclaimer{
+      margin-top:18px;
+      padding:14px 16px;
+      background:#fff8db;
+      border:1px solid #f3e39a;
+      border-radius:12px;
+      font-size:14px;
+      line-height:1.55;
+      color:#6e5c11;
+    }
+
+    .mini-card{
+      margin-top:18px;
+      padding:18px 20px;
+      border-top:1px solid var(--border);
+    }
+
+    .mini-card h3{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+
+    .mini-card p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+      font-size:15px;
+    }
+
+    @media (max-width: 920px){
+      .wrap{
+        grid-template-columns:1fr;
+      }
+      .side{
+        position:static;
+      }
+      h1{
+        font-size:34px;
+      }
+      .gallery{
+        grid-template-columns:1fr;
+      }
+      .gallery img{
+        height:260px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">crowdfunding</div>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="hero">
+        <span class="eyebrow">Crowdfunding lifestyle • nueva etapa vital</span>
+        <h1>Independencia para Natalia: porque merezco vivir como una reina, y porque no, ya toca.</h1>
+        <p class="subtitle">
+          Hola chic@s, soy Natalia, algunos ya me conoceis. He abierto este crowdfunding para iniciar mi nueva vida de independencia con la calma,
+          la luz natural y el nivel de confort que una casa podria aportarme y me merezco, como todos merecemos un minimo espacio para vivir,
+          y con muy buen criterio estético, ya sabeis que no me gusta cualquier cosa.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <figure>
+          <img src="japon.jpg" alt="Natalia en Japón">
+          <figcaption>
+            Aquí os muestro una foto de cuando estuve en Japón. Fue un viaje increíble, espiritual, transformador…
+            y sí, me dejé una pasta, pero las experiencias bonitas también construyen persona, prometo que subiré alguna fotillo del proximo viaje.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <img src="iphone.jpg" alt="Natalia con su nuevo iPhone">
+          <figcaption>
+            Os presento mi ultima adquicisión mi flamante iPhone 17 Pro Max, no todo puede ser para una casa, tambien hay que permitirse de vez en cuando una fiestecilla y algún que otro capricho. Me he comprado el último modelo porque al final una buena cámara,
+            una buena pantalla y una vida premium van un poco de la mano.
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="story">
+        <h2>Mi historia</h2>
+        <p>
+          Como sabéis, independizarse hoy en día no es fácil. Entre los precios de la vivienda, la decoración,
+          los pequeños gastos del día a día, la tecnología y el simple deseo de vivir un poquito,
+          he decidido pedir apoyo colectivo con total transparencia y se que si todos colaboramos un poco podre comprarme mi nueva casa.
+        </p>
+        <p>
+          No se trata solo de tener un sitio donde vivir. Se trata de crear un hogar que me represente: acogedor,
+          bonito, luminoso y con espacio suficiente para mi ropa, mis esenciales de autocuidado y mis recuerdos
+          de viajes internacionales.
+        </p>
+        <p>
+          Siento profundamente que este crowdfunding puede ser el comienzo de algo precioso. Con vuestra ayuda,
+          podré acercarme a una independencia real, elegante y coherente con la persona en la que me estoy convirtiendo.
+        </p>
+      </div>
+    </section>
+
+    <aside class="card side">
+      <div class="fund-box">
+        <div class="amount">4.302 €</div>
+        <div class="goal">recaudados de 180.000 €</div>
+
+        <div class="progress" aria-label="Progreso de recaudación">
+          <div class="progress-bar"></div>
+        </div>
+
+        <div class="meta">
+          2,39 % completado<br>
+          Objetivo orientado a una independencia digna, estética y emocionalmente alineada.
+        </div>
+
+        <a class="paypal-btn" href="https://www.paypal.com/" target="_blank" rel="noopener noreferrer">
+          <svg class="paypal-logo" viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="#fff" d="M9.3 4.2h5.4c2.8 0 4.5 1.5 4 4.3-.5 3.2-2.7 4.8-5.8 4.8h-1.7l-.7 4.3H7.1L9.3 4.2zm2.3 2-1 5h1.5c1.8 0 3-.8 3.3-2.5.3-1.7-.5-2.5-2.3-2.5h-1.5z"/>
+            <path fill="#fff" opacity=".85" d="M7 6.4h4.6c2.5 0 4 1.3 3.6 3.7-.5 2.8-2.4 4.2-5.1 4.2H8.6L8 17.6H4.8L7 6.4z"/>
+          </svg>
+          Ir a PayPal
+        </a>
+
+        <div class="small-note">
+          Botón externo a PayPal. 
+        </div>
+
+        <div class="disclaimer">
+          Disfruta de otras campañas de recaudación.
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <h3>Destino estimado de fondos</h3>
+        <p>
+          Entrada de vivienda, mobiliario mono, decoración emocional, organización interior y
+          otras necesidades perfectamente razonables de una nueva etapa.
+        </p>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
